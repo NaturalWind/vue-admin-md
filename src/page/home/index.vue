@@ -1,43 +1,12 @@
 <template>
   <div class="md-login-frame">
     <div class="top-wrapper">
-      <img class="logo" src="../../assets/logo.png">
+      <!-- <img class="logo" src="../../assets/logo.png"> -->
     </div>
     <div class="center-wrapper">
       <div class="login-wrapper">
         <p class="title">vue-admin-md</p>
-        <el-form
-          class="login-form"
-          status-icon
-          ref="form"
-          :model="form"
-          :rules="rules">
-          <el-form-item prop="username">
-            <el-input
-              v-model="form.username"
-              placeholder="请输入用户名"
-              @keyup.enter.native="clickLogin">
-              <i slot="prefix" class="iconfont iconzhanghaodenglu"></i>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              show-password
-              v-model="form.password"
-              placeholder="请输入密码"
-              @keyup.enter.native="clickLogin">
-              <i slot="prefix" class="iconfont iconmima"></i>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="username">
-            <el-button
-              class="btn-style"
-              round
-              type="primary"
-              @click="clickLogin">登陆
-            </el-button>
-          </el-form-item>
-        </el-form>
+        
       </div>
     </div>
   </div>
@@ -50,7 +19,7 @@ import { mapGetters } from 'vuex';
 import { loginByUsername } from '@/api/login';
 
 export default {
-  name: 'login',
+  name: 'home',
   data () {
     return {
       form: {
@@ -69,7 +38,8 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.$store.dispatch('LoginByUsername', this.form).then(() => {
-            this.$router.push({ path: '/' });
+            console.log('登陆成功')
+            // this.$router.push({ path: '/home' });
           })
         } else {
           return false;
