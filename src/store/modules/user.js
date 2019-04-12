@@ -1,13 +1,15 @@
 // api
-import { loginByUsername } from '@/api/login'
-import { getUserInfo } from '@/api/user/user'
+import { loginByUsernameApi } from '@/api/login'
+import { getUserInfoApi } from '@/api/user/user'
+import { getMenuApi } from '@/api/user/menu'
 
 const user = {
   state: {
     token: '',
     userInfo: {},
     roles: [],
-    permission: {}
+    permission: {},
+    menu: []
   },
   actions: {
     LoginByUsername({ commit }, userInfo) {
@@ -16,7 +18,7 @@ const user = {
         password: userInfo.password
       }
       return new Promise((resolve) => {
-        loginByUsername(parameter).then(res => {
+        loginByUsernameApi(parameter).then(res => {
           commit('SET_TOKEN', res.token)
           resolve()
         })
@@ -24,11 +26,21 @@ const user = {
     },
     GetUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getUserInfo().then(res => {
+        getUserInfoApi().then(res => {
           commit('SET_USERINFO', res.data.userInfo)
           commit('SET_ROLES', res.data.roles)
           commit('SET_PERMISSION', res.data.permission)
           resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetMenu({ commit }) {
+      return new Promise((resolve, reject) => {
+        getMenuApi().then(res => {
+          commit('SET_MENU', res.data)
+          resolve(res.data)
         }).catch(error => {
           reject(error)
         })
@@ -40,6 +52,7 @@ const user = {
         commit('SET_USERINFO', {})
         commit('SET_ROLES', [])
         commit('SET_PERMISSION', {})
+        commit('SET_MENU', [])
         resolve()
       })
     }
@@ -56,6 +69,9 @@ const user = {
     },
     SET_PERMISSION: (state, permission) => {
       state.permission = permission
+    },
+    SET_MENU: (state, menu) => {
+      state.menu = menu
     }
   }
 }

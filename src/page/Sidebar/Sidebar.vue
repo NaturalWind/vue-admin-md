@@ -4,11 +4,49 @@
       <div class="title-or-logo">vue-admin-md</div>
     </div>
     <el-scrollbar class="sidebar-center">
-      <div class="tip" v-if="true">暂无菜单!</div>
-      <!--  -->
+      <div class="tip" v-if="false">暂无菜单!</div>
+      <el-menu
+        class="el-menu-vertical-demo"
+        unique-opened
+        :collapse="isCollapse">
+        <sidebar-item
+          :menu="menu">
+        </sidebar-item>
+      </el-menu>
     </el-scrollbar>
   </div>
 </template>
+
+<script>
+// vuex
+import { mapGetters } from 'vuex';
+// 组件
+import SidebarItem from './SidebarItem';
+
+export default {
+  name: 'sidebar',
+  components: {
+    SidebarItem
+  },
+  computed: {
+    ...mapGetters([
+      'isCollapse',
+      'menu'
+    ])
+  },
+  created () {
+    this.getInitData();
+  },
+  methods: {
+    getInitData () {
+      this.$store.dispatch('GetMenu').then(data => {
+        this.$router.$mdRouter.formatRoutes(data, [], data[data.length - 1])
+        console.log('当前路由：', this.$router)
+      })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .md-sidebar-frame {

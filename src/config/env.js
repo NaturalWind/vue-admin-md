@@ -2,7 +2,7 @@
 const env = process.env
 let baseUrl = ''
 // iconfont
-let iconfontVersion = ['1133445_g5g4tg6advg'];
+let iconfontVersion = ['1133445_8v9hfm5wo48'];
 let iconfontUrl = `//at.alicdn.com/t/font_$key.css`;
 
 if (env.NODE_ENV == 'development') {
