@@ -26,11 +26,10 @@ RouterPlugin.install = function (router, store) {
       // 遍历
       for (let i = 0; i < menu.length; i++) {
         let item = JSON.parse(JSON.stringify(menu[i]))
-        let component = item.component === 'Layout' ? '@/page/index/index' : `@/${item.component}.vue`
         let menuItem = {
           path: item.path || '',
           name: item.name || '',
-          component: resolve => require([component], resolve),
+          component: resolve => require([item.component === 'Layout' ? '@/page/index/index.vue' : `@/${item.component}.vue`], resolve),
           meta: {
             keepAlive: item.keepAlive || false
           },

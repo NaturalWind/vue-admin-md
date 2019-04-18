@@ -5,11 +5,18 @@
       <el-menu-item
         :index="item.path"
         :key="item.name + item.path"
-        v-if="!item.children.length"
+        v-if="!item.children.length && !isURL(item.path)"
         @click="clickMenuIten(item)">
         <!-- iconfont 后面有空格 -->
         <i :class="'iconfont ' + item.icon"></i>
         <span slot="title">{{ item.name }}</span>
+      </el-menu-item>
+      <!-- 外链 -->
+      <el-menu-item
+        :index="item.path"
+        :key="item.name + item.path"
+        v-if="isURL(item.path)">
+        <a :href="item.path" target="_blank">{{ item.name }}</a>
       </el-menu-item>
       <!-- 多层 -->
       <el-submenu :index="item.path" :key="item.name + item.path" v-if="item.children.length">
@@ -25,6 +32,9 @@
 </template>
 
 <script>
+// 工具
+import { isURL } from '@/util/validate';
+
 export default {
   name: 'sidebarItem',
   props: {
@@ -34,8 +44,8 @@ export default {
     }
   },
   methods: {
+    isURL,
     clickMenuIten (item) {
-      console.log('当前点击菜单：', item);
       this.$router.push({
         path: item.path
       });

@@ -41,7 +41,6 @@ export default {
     getInitData () {
       this.$store.dispatch('GetMenu').then(data => {
         this.$router.$mdRouter.formatRoutes(data, [], data[data.length - 1])
-        console.log('当前路由：', this.$router)
       })
     }
   }
