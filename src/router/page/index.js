@@ -27,5 +27,17 @@ export default [
         component: () => import('@/page/home/index')
       }
     ]
+  },
+  {
+    path: '/mdIframe',
+    component: Layout,
+    redirect: '/mdIframe/index',
+    children: [
+      {
+        path: 'index',
+        name: 'iframe',
+        component: () => import('@/components/Iframe')
+      }
+    ]
   }
 ]

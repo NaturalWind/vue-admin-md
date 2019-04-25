@@ -2,7 +2,7 @@
   <div class="md-header-options-frame">
     <div class="options-left">
       <div class="collapse-icon-wrapper">
-        <i class="collapse-icon iconfont iconzhankai"></i>
+        <i class="collapse-icon iconfont" :class="isCollapse ? 'iconsuoping' : 'iconzhankai'" @click="clickCollapse"></i>
       </div>
     </div>
     <div class="options-right">
@@ -40,7 +40,15 @@
 </template>
 
 <script>
+// vuex
+import { mapGetters } from 'vuex';
+
 export default {
+  computed: {
+    ...mapGetters([
+      'isCollapse'
+    ])
+  },
   data () {
     return {
       accountOptions: [
@@ -60,6 +68,9 @@ export default {
     }
   },
   methods: {
+    clickCollapse () {
+      this.$store.commit('SET_COLLAPSE');
+    },
     clickAccountOptions (value) {
       console.log('当前点击账号：', value);
     }

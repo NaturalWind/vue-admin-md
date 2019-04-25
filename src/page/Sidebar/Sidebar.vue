@@ -1,7 +1,8 @@
 <template>
   <div class="md-sidebar-frame">
     <div class="sidebar-top">
-      <div class="title-or-logo">vue-admin-md</div>
+      <div class="title" v-show="!isCollapse">vue-admin-md</div>
+      <i class="logo iconfont iconsmile" v-show="isCollapse"></i>
     </div>
     <el-scrollbar class="sidebar-center">
       <div class="tip" v-if="false">暂无菜单!</div>
@@ -61,10 +62,16 @@ export default {
     width: 100%;
     height: 64px;
     background: goldenrod;
-    .title-or-logo {
+    .title {
       font-size: 23px;
       text-align: center;
       background: cadetblue;
+    }
+    .logo {
+      font-size: 30px;
+      text-align: center;
+      width: 30px;
+      height: 30px;
     }
   }
   .sidebar-center {
