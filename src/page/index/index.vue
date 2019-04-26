@@ -7,7 +7,9 @@
       <div class="md-header-options">
         <header-options></header-options>
       </div>
-      <div class="md-tags-bar"></div>
+      <div class="md-tags-bar">
+        <tag-bar></tag-bar>
+      </div>
       <el-scrollbar class="md-main-view">
         <keep-alive>
           <router-view :style="{'height': '100%'}" v-if="$route.meta.$keepAlive"/>
@@ -25,12 +27,14 @@ import { mapGetters } from 'vuex';
 // 组件
 import Sidebar from '@/page/Sidebar/Sidebar';
 import HeaderOptions from '@/page/HeaderOptions/Options';
+import TagBar from '@/page/TagBar/Tag'
 
 export default {
   name: 'layout',
   components: {
     Sidebar,
-    HeaderOptions
+    HeaderOptions,
+    TagBar
   },
   computed: {
     ...mapGetters([

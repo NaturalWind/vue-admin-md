@@ -1,5 +1,6 @@
 import router from './router/router'
 import store from './store'
+import { validateNull } from '@/util/validate'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -28,6 +29,18 @@ router.beforeEach((to, from, next) => {
           })
         })
       } else {
+        let label = to.name
+        let path = to.fullPath
+        if (to.meta.isTab !== false &&
+            !validateNull(label) &&
+            !validateNull(path)) {
+          store.commit('ADD_TAG', {
+            label: label,
+            path: path,
+            params: to.params,
+            query: to.query
+          })
+        }
         next()
       }
     }

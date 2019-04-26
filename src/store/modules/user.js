@@ -2,14 +2,31 @@
 import { loginByUsernameApi } from '@/api/login'
 import { getUserInfoApi } from '@/api/user/user'
 import { getMenuApi } from '@/api/user/menu'
+// 工具
+import { setStorage, getStorage } from '@/util/storage'
 
 const user = {
   state: {
-    token: '',
-    userInfo: {},
-    roles: [],
-    permission: {},
-    menu: []
+    token: getStorage({
+      name: 'token',
+      type: 'session'
+    }) || '',
+    userInfo: getStorage({
+      name: 'userInfo',
+      type: 'session'
+    }) || {},
+    roles: getStorage({
+      name: 'roles',
+      type: 'session'
+    }) || [],
+    permission: getStorage({
+      name: 'permission',
+      type: 'session'
+    }) || {},
+    menu: getStorage({
+      name: 'menu',
+      type: 'session'
+    }) || []
   },
   actions: {
     LoginByUsername({ commit }, userInfo) {
@@ -60,18 +77,43 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
+      setStorage({
+        name: 'token',
+        content: state.token,
+        type: 'session'
+      })
     },
     SET_USERINFO: (state, userInfo) => {
       state.userInfo = userInfo
+      setStorage({
+        name: 'userInfo',
+        content: state.userInfo,
+        type: 'session'
+      })
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+      setStorage({
+        name: 'roles',
+        content: state.roles,
+        type: 'session'
+      })
     },
     SET_PERMISSION: (state, permission) => {
       state.permission = permission
+      setStorage({
+        name: 'permission',
+        content: state.permission,
+        type: 'session'
+      })
     },
     SET_MENU: (state, menu) => {
       state.menu = menu
+      setStorage({
+        name: 'menu',
+        content: state.menu,
+        type: 'session'
+      })
     }
   }
 }

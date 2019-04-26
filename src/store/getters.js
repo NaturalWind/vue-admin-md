@@ -6,7 +6,10 @@ const getters = {
   permission: state => state.user.permission,
   menu: state => state.user.menu,
   // common
-  isCollapse: state => state.common.isCollapse
+  isCollapse: state => state.common.isCollapse,
+  // tags
+  tag: state => state.tags.tag,
+  tagList: state => state.tags.tagList
 }
 
 export default getters
