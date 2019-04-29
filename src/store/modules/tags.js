@@ -42,18 +42,21 @@ const tags = {
       if (tag.label === tagDefaultValue.label && tag.path === tagDefaultValue.path) {
         return
       }
-      let index = state.tagList.indexOf(tag)
-      if (index > -1) {
-        state.tagList.splice(index, 1)
-        setStorage({
-          name: 'tagList',
-          content: state.tagList,
-          type: 'session'
-        })
-      }
+      state.tagList = state.tagList.filter((item) => {
+        return item.label !== tag.label && item.path !== tag.path
+      })
+      setStorage({
+        name: 'tagList',
+        content: state.tagList,
+        type: 'session'
+      })
     },
     DEL_TAG_OTHER: (state) => {
-      state.tagList = [state.tag]
+      if (state.tag.label === tagDefaultValue.label && state.tag.path === tagDefaultValue.path) {
+        state.tagList = [tagDefaultValue]
+      } else {
+        state.tagList = [tagDefaultValue, state.tag]
+      }
       setStorage({
         name: 'tagList',
         content: state.tagList,
@@ -61,7 +64,7 @@ const tags = {
       })
     },
     DEL_TAG_ALL: (state) => {
-      state.tag = state.tagList.find((item) => {return item.label === '首页'})
+      state.tag = tagDefaultValue
       setStorage({
         name: 'tag',
         content: state.tag,

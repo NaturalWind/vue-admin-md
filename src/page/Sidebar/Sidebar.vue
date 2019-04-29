@@ -9,7 +9,8 @@
       <el-menu
         class="el-menu-vertical-demo"
         unique-opened
-        :collapse="isCollapse">
+        :collapse="isCollapse"
+        :default-active="tag.path">
         <sidebar-item
           :menu="menu">
         </sidebar-item>
@@ -32,7 +33,8 @@ export default {
   computed: {
     ...mapGetters([
       'isCollapse',
-      'menu'
+      'menu',
+      'tag'
     ])
   },
   created () {
