@@ -51,11 +51,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .md-sidebar-frame {
   position: relative;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .15);
   width: 100%;
   height: 100%;
-  background: wheat;
   .sidebar-top {
     display: flex;
     justify-content: center;
@@ -63,24 +65,25 @@ export default {
     position: relative;
     width: 100%;
     height: 64px;
-    background: goldenrod;
+    color: $mainTextColor;
+    background: $mainBg;
     .title {
       font-size: 23px;
       text-align: center;
-      background: cadetblue;
     }
     .logo {
-      font-size: 30px;
+      font-size: 25px;
       text-align: center;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
     }
   }
   .sidebar-center {
     position: relative;
     width: 100%;
     height: calc(100% - 64px);
-    background: cornflowerblue;
+    color: $tipTextColor;
+    background: $sidebarBgColor;
     .tip {
       position: absolute;
       top: calc(50% - 12px);

@@ -6,6 +6,9 @@
       </div>
     </div>
     <div class="options-right">
+      <div class="item-icon-wrapper">
+        <el-color-picker v-model="selectColor" show-alpha :predefine="predefineColors"></el-color-picker>
+      </div>
       <span class="item-icon-wrapper">
         <i class="item-icon iconfont iconbug-fill"></i>
       </span>
@@ -51,6 +54,18 @@ export default {
   },
   data () {
     return {
+      selectColor: '#409EFF',
+      predefineColors: [
+        '#ff4500',
+        '#ff8c00',
+        '#ffd700',
+        '#90ee90',
+        '#00ced1',
+        '#1e90ff',
+        '#c71585',
+        '#c7158577',
+        'rgba(255, 69, 0, 0.68)'
+      ],
       accountOptions: [
         {
           label: '个人信息',
@@ -79,17 +94,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .md-header-options-frame {
   display: flex;
   position: relative;
   width: 100%;
   height: 100%;
-  background: cadetblue;
+  color: $mainTextColor;
+  background: $mainBg;
   .options-left {
     position: relative;
     width: 70px;
     height: 100%;
-    background: hotpink;
     .collapse-icon-wrapper {
       display: flex;
       justify-content: center;
@@ -97,7 +114,7 @@ export default {
       width: 100%;
       height: 100%;
       .collapse-icon {
-        font-size: 30px;
+        font-size: 25px;
       }
     }
   }
@@ -108,7 +125,6 @@ export default {
     position: relative;
     width: calc(100% - 70px);
     height: 100%;
-    background: khaki;
     .item-icon-wrapper {
       display: flex;
       justify-content: center;
@@ -116,14 +132,13 @@ export default {
       margin-right: 15px;
       width: 35px;
       height: 35px;
-      background: yellowgreen;
       .item-icon {
-        font-size: 30px;
+        font-size: 25px;
       }
     }
     .item-account-wrapper {
       display: flex;
-      margin-right: 15px;
+      margin-right: 10px;
       height: 35px;
       .item-account-icon {
         border-radius: 50%;
@@ -131,8 +146,26 @@ export default {
         height: 35px;
       }
       .item-account-name {
+        padding-left: 5px;
+        color: $mainTextColor;
         height: 35px;
         line-height: 35px;
+      }
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.md-header-options-frame {
+  .options-right {
+    .item-icon-wrapper {
+      .el-color-picker {
+        height: 35px;
+        .el-color-picker__trigger {
+          width: 35px;
+          height: 35px;
+        }
       }
     }
   }

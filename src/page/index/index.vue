@@ -55,11 +55,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .md-frame {
   position: relative;
   width: 100%;
   height: 100%;
-  background: cadetblue;
+  background: $pageBg;
   .md-left {
     position: fixed;
     top: 0;
@@ -67,7 +69,6 @@ export default {
     width: 220px;
     height: 100%;
     z-index: 1024;
-    background: chocolate;
   }
   .md-right {
     position: absolute;
@@ -75,24 +76,20 @@ export default {
     left: 220px;
     width: calc(100% - 220px);
     height: 100%;
-    background: cornflowerblue;
     .md-header-options {
       position: relative;
       width: 100%;
       height: 64px;
-      background: rebeccapurple;
     }
     .md-tags-bar {
       position: relative;
       width: 100%;
       height: 40px;
-      background: green;
     }
     .md-main-view {
       position: relative;
       width: 100%;
       height: calc(100% - 64px - 40px);
-      background: cadetblue;
     }
   }
   .md-shade {
